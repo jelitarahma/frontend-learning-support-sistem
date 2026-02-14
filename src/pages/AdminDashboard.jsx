@@ -99,9 +99,6 @@ function AdminDashboard() {
                 <h2>Welcome, {user?.fullName || 'Admin'}!</h2>
                 <p>You are logged in as <strong>{user?.role}</strong>. Managing the system with full database access.</p>
               </div>
-              <div className="banner-image">
-                <img src="https://cdni.iconscout.com/illustration/premium/thumb/men-working-on-laptop-illustration-download-in-svg-png-gif-formats--student-college-office-work-business-activities-pack-illustrations-5221978.png" alt="Welcome" />
-              </div>
             </section>
 
             {/* Mini Stats */}
@@ -136,13 +133,13 @@ function AdminDashboard() {
             </div>
 
             {/* Dashboard Analytics Section */}
-            <div className="analytics-grid" style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) 400px', gap: '2rem', marginTop: '2rem' }}>
+            <div className="analytics-grid">
               {/* User Progress */}
               <section className="progress-section">
                 <div className="section-header">
                   <h3>Recent User Progress</h3>
                 </div>
-                <div className="progress-list card" style={{ padding: '0' }}>
+                <div className="progress-list card" style={{ padding: '0', overflowX: 'auto' }}>
                   <table className="admin-table">
                     <thead>
                       <tr>
@@ -201,46 +198,6 @@ function AdminDashboard() {
                 </div>
               </section>
             </div>
-
-            {/* Recent Subjects Table (Replaces Dummy Assignments) */}
-            <section className="assignments-section" style={{ marginTop: '2rem' }}>
-              <div className="assignments-header">
-                <h3>System Subjects</h3>
-              </div>
-              <div className="assignments-list card">
-                <table className="assignments-table">
-                  <thead>
-                    <tr>
-                      <th>Title</th>
-                      <th>Category</th>
-                      <th>Thumbnail</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {recentSubjects.length > 0 ? recentSubjects.map(sub => (
-                      <tr key={sub._id}>
-                        <td>
-                          <div className="task-name-cell">
-                            <div className="task-icon blue">
-                              <Compass size={18} />
-                            </div>
-                            <div>
-                              <p className="task-title">{sub.title || sub.name}</p>
-                            </div>
-                          </div>
-                        </td>
-                        <td>{sub.categoryId?.name || 'Uncategorized'}</td>
-                        <td>
-                          {sub.thumbnail ? <img src={sub.thumbnail} alt="thumb" style={{ width: 30, height: 30, borderRadius: 4 }} /> : 'No image'}
-                        </td>
-                      </tr>
-                    )) : (
-                      <tr><td colSpan="3" style={{ padding: 20, textAlign: 'center' }}>No subjects found.</td></tr>
-                    )}
-                  </tbody>
-                </table>
-              </div>
-            </section>
           </div>
         )
     }
@@ -260,10 +217,7 @@ function AdminDashboard() {
       {/* Sidebar */}
       <aside className="dashboard-sidebar">
         <div className="sidebar-logo">
-          <div className="logo-icon-blue">
-            <BookOpen size={20} color="white" />
-          </div>
-          <span>Learnzie</span>
+          <img src="/assets/logo.11dc4d9c.svg fill.png" alt="" />
         </div>
 
         <nav className="sidebar-nav">
@@ -287,11 +241,6 @@ function AdminDashboard() {
 
         <div className="sidebar-pro-card">
           <div className="pro-card-content">
-            <div className="pro-icon" style={{ display: 'flex', justifyContent: 'center' }}>
-              <Sparkles size={20} color="#FFD700" />
-            </div>
-            <h4>System Status</h4>
-            <p style={{ fontSize: '0.7rem', color: 'var(--dash-text-sec)' }}>All systems operational. Backend v1.2.0 fully connected.</p>
             <button className="pro-btn" onClick={logout}>Logout Admin</button>
           </div>
         </div>
@@ -305,6 +254,10 @@ function AdminDashboard() {
             <p className="current-date">{new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
           </div>
           <div className="header-actions">
+            <div className="header-user-mini" style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', marginRight: '1rem' }}>
+              <img src="https://unair.ac.id/wp-content/uploads/2023/04/gambar1-19-1-1024x929.jpg" alt="Avatar" style={{ width: 35, height: 35, borderRadius: '50%', objectFit: 'cover' }} />
+              <span style={{ fontWeight: 600, fontSize: '0.9rem' }}>{user?.fullName || 'Admin'}</span>
+            </div>
             <button className="icon-btn"><MessageSquare size={20} /></button>
             <button className="icon-btn notify"><Bell size={20} /></button>
           </div>
@@ -312,74 +265,6 @@ function AdminDashboard() {
 
         {renderContent()}
       </main>
-
-      {/* Right Sidebar - only show on Dashboard view for now to keep layout clean on manager views */}
-      {currentView === 'Dashboard' && (
-        <aside className="right-sidebar">
-          <div className="user-profile-header">
-            <div className="user-info">
-              <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&q=80" alt="Avatar" className="profile-img" />
-              <div>
-                <h4>{user?.fullName || 'Admin User'}</h4>
-                <p>@{user?.username || 'admin'}</p>
-              </div>
-            </div>
-            <button className="icon-btn-gray"><Settings size={18} /></button>
-          </div>
-
-          <section className="calendar-section card">
-            <div className="calendar-header">
-              <button className="cal-nav"><ChevronLeft size={16} /></button>
-              <h4>{new Date().toLocaleString('default', { month: 'long', year: 'numeric' })}</h4>
-              <button className="cal-nav"><ChevronRight size={16} /></button>
-            </div>
-            <div className="calendar-grid">
-              {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(d => <span key={d} className="cal-day-label">{d[0]}</span>)}
-              {[...Array(30)].map((_, i) => (
-                <span key={i} className={`cal-date ${i + 1 === new Date().getDate() ? 'active' : ''}`}>{i + 1}</span>
-              ))}
-            </div>
-          </section>
-
-          <section className="activities-section">
-            <div className="section-title-row">
-              <h3>Recent Activities</h3>
-              <MoreHorizontal size={20} />
-            </div>
-            <p className="activity-group-label">Today</p>
-            <div className="activity-timeline">
-              <div className="activity-item">
-                <div className="activity-icon-blue"><Play size={16} /></div>
-                <div className="activity-details">
-                  <p>Watched a lecture video on **Business Ethics**</p>
-                  <span className="activity-time">1:00 PM</span>
-                </div>
-              </div>
-              <div className="activity-item">
-                <div className="activity-icon-pink"><FileText size={16} /></div>
-                <div className="activity-details">
-                  <p>Created new Subject **Intro to Calculus**</p>
-                  <span className="activity-time">10:30 AM</span>
-                </div>
-              </div>
-              <div className="activity-item">
-                <div className="activity-icon-orange"><Search size={16} /></div>
-                <div className="activity-details">
-                  <p>Updated **Physics** Quiz</p>
-                  <span className="activity-time">9:15 AM</span>
-                </div>
-              </div>
-              <div className="activity-item">
-                <div className="activity-icon-dark"><LogOut size={16} /></div>
-                <div className="activity-details">
-                  <p>Logged into the dashboard</p>
-                  <span className="activity-time">9:00 AM</span>
-                </div>
-              </div>
-            </div>
-          </section>
-        </aside>
-      )}
     </div>
   )
 }

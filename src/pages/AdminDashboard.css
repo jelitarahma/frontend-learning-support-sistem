@@ -116,7 +116,8 @@
 .dashboard-main {
   flex: 1;
   padding: 2rem;
-  width: 100%;
+  min-width: 0; /* Prevent overflow */
+  background-color: var(--dash-bg);
 }
 
 .main-header {
@@ -161,8 +162,9 @@
 
 .main-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 1.5rem;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  width: 100%;
 }
 
 .card {
@@ -186,14 +188,17 @@
 
 /* Welcome Banner */
 .welcome-banner {
-  grid-column: span 1;
-  background: var(--dash-primary);
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, var(--dash-primary) 0%, var(--dash-blue) 100%);
   border-radius: var(--dash-radius);
-  padding: 2.5rem;
+  padding: 3rem;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   color: white;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 10px 30px rgba(45, 96, 255, 0.2);
 }
 
 .banner-content {
@@ -209,7 +214,7 @@
 .banner-content p {
   opacity: 0.8;
   margin-bottom: 2rem;
-  max-width: 250px;
+  max-width: 100%;
 }
 
 .btn-banner {
@@ -287,8 +292,9 @@
 
 /* Stats Row */
 .stats-row {
-  grid-column: span 2;
-  display: flex;
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1.5rem;
 }
 
@@ -428,7 +434,7 @@
 
 /* Assignments */
 .assignments-section {
-  grid-column: span 2;
+  grid-column: 1 / -1;
 }
 
 .assignments-header {
@@ -539,12 +545,15 @@
   color: var(--dash-text-sec);
 }
 
-/* Right Sidebar */
+/* Right Sidebar integrated */
 .right-sidebar {
-  width: 320px;
+  width: 350px;
   background-color: var(--dash-white);
   padding: 2rem;
   border-left: 1px solid var(--dash-border);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .user-profile-header {
@@ -666,6 +675,26 @@
 .activity-time { font-size: 0.7rem; color: var(--dash-text-sec); }
 
 /* Additional Dashboard Styles */
+.analytics-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.bottom-dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 1200px) {
+  .analytics-grid, .bottom-dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .analytics-grid h3 {
   font-size: 1.1rem;
   margin-bottom: 1.2rem;

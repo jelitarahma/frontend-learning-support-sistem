@@ -107,7 +107,7 @@ function CategoryManager() {
             <thead>
               <tr>
                 <th width="60">No</th>
-                <th width="80">Icon</th>
+                {/* <th width="80">Icon</th> */}
                 <th>Category Info</th>
                 <th>Description</th>
                 <th width="120" className="text-right">Actions</th>
@@ -117,13 +117,13 @@ function CategoryManager() {
               {categories.map((cat, index) => (
                 <tr key={cat._id}>
                   <td>{index + 1}</td>
-                  <td>
+                  {/* <td>
                     <img
                       src={cat.thumbnail || 'https://placehold.co/100?text=Icon'}
                       alt="" className="mini-thumb"
                       onError={e => e.target.src = 'https://placehold.co/100?text=Icon'}
                     />
-                  </td>
+                  </td> */}
                   <td>
                     <div className="font-semibold">{cat.name}</div>
                     <div className="badge-code">{cat.code || 'NO-CODE'}</div>

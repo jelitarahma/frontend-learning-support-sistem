@@ -4,13 +4,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #F8FAFC;
+  background-color: #ffb80361;
   padding: 2rem;
 }
 
 .auth-container {
   width: 100%;
-  max-width: 1100px;
+  max-width: 1200px;
   background: white;
   display: flex;
   border: 1.5px solid #282568;
@@ -22,7 +22,7 @@
 /* Left Side: Illustration */
 .auth-visual {
   flex: 1;
-  background: linear-gradient(135deg, #5B56E8 0%, #282568 100%);
+  background: #FFB703;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,7 +40,18 @@
   right: -10%;
   width: 300px;
   height: 300px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.266);
+  border-radius: 50%;
+}
+
+.auth-visual::after {
+  content: '';
+  position: absolute;
+  bottom: -10%;
+  left: -10%;
+  width: 300px;
+  height: 300px;
+  background: rgba(255, 255, 255, 0.266);
   border-radius: 50%;
 }
 
@@ -51,10 +62,9 @@
 
 .auth-illustration-img {
   width: 100%;
-  max-width: 400px;
+  max-width: 350px;
   margin-bottom: 2rem;
   filter: drop-shadow(0 20px 30px rgba(0,0,0,0.2));
-  animation: float 6s ease-in-out infinite;
 }
 
 @keyframes float {
@@ -123,13 +133,13 @@
 .auth-form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 0rem;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0rem;
 }
 
 .form-group label {
@@ -234,7 +244,7 @@
 }
 
 .auth-footer {
-  margin-top: 2.5rem;
+  margin-top: 0.5rem;
   text-align: center;
   font-weight: 600;
   color: #64748B;

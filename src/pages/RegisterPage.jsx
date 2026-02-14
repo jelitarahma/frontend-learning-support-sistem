@@ -12,11 +12,12 @@ function RegisterPage() {
     fullName: '',
     role: 'STUDENT',
     schoolInfo: {
-      schoolId: 'EDU-01',
+      schoolName: 'SMA Negeri 1',
       class: '12 IPA 1',
       academicYear: '2025/2026'
     }
   });
+
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -29,7 +30,13 @@ function RegisterPage() {
     setError('');
     setIsLoading(true);
 
-    const result = await register(formData);
+    // Filter out schoolInfo if user is ADMIN
+    const submitData = { ...formData };
+    if (submitData.role === 'ADMIN') {
+      delete submitData.schoolInfo;
+    }
+
+    const result = await register(submitData);
 
     if (result.success) {
       navigate('/login');
@@ -41,10 +48,22 @@ function RegisterPage() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+
+    if (name.includes('.')) {
+      const [parent, child] = name.split('.');
+      setFormData(prev => ({
+        ...prev,
+        [parent]: {
+          ...prev[parent],
+          [child]: value
+        }
+      }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }));
+    }
   };
 
   return (
@@ -54,21 +73,16 @@ function RegisterPage() {
         <div className="auth-visual">
           <div className="visual-content">
             <img
-              src="/assets/Mask Group.png"
+              src="/assets/login-img.png"
               alt="Register Illustration"
               className="auth-illustration-img"
             />
-            <h2>Gabung Bersama Kami!</h2>
-            <p>Mulai perjalanan belajarmu hari ini dan rasakan pengalaman belajar yang menyenangkan.</p>
           </div>
         </div>
 
         {/* Right Side: Form */}
         <div className="auth-form-side">
           <div className="auth-header">
-            <Link to="/" className="auth-logo">
-              <img src="/assets/logo.11dc4d9c.svg fill.png" alt="Skillvers" style={{ height: '40px' }} />
-            </Link>
             <h1>Daftar</h1>
             <p>Lengkapi data diri Anda untuk mendaftar</p>
           </div>
@@ -88,7 +102,7 @@ function RegisterPage() {
                 <input
                   type="text"
                   name="fullName"
-                  placeholder="Contoh: Jelita Rahma"
+                  placeholder="masukkan nama lengkap"
                   value={formData.fullName}
                   onChange={handleChange}
                   required
@@ -103,7 +117,7 @@ function RegisterPage() {
                 <input
                   type="text"
                   name="username"
-                  placeholder="Contoh: jeje"
+                  placeholder="Masukkan username"
                   value={formData.username}
                   onChange={handleChange}
                   required
@@ -158,6 +172,7 @@ function RegisterPage() {
                 >
                   <option value="STUDENT">Student</option>
                   <option value="TEACHER">Teacher</option>
+                  <option value="ADMIN">Admin</option>
                 </select>
               </div>
             </div>

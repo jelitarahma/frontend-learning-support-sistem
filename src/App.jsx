@@ -24,11 +24,11 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<PrivateRoute><HomePage /></PrivateRoute>} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/courses" element={<CoursesPage />} />
-        <Route path="/course/:id" element={<CourseDetailPage />} />
+        <Route path="/courses" element={<PrivateRoute><CoursesPage /></PrivateRoute>} />
+        <Route path="/course/:id" element={<PrivateRoute><CourseDetailPage /></PrivateRoute>} />
         <Route path="/lesson/:id" element={<PrivateRoute><LessonPage /></PrivateRoute>} />
         <Route path="/quiz/:id" element={<PrivateRoute><QuizPage /></PrivateRoute>} />
         <Route path="/admin" element={<PrivateRoute adminOnly><AdminDashboard /></PrivateRoute>} />

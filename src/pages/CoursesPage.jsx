@@ -125,7 +125,6 @@ function CoursesPage() {
               <div className="promo-card">
                 <h4>Siap Belajar?</h4>
                 <p>Klik kurikulum terbaru kami dan dapatkan update materi setiap minggunya.</p>
-                <img src="/assets/dino-2.png" alt="Dino" className="promo-img" />
               </div>
             </div>
           </aside>

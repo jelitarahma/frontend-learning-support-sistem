@@ -36,26 +36,27 @@ function LoginPage() {
 
   return (
     <div className="auth-page">
+      {/* Figma background shapes */}
+      <div className="auth-bg-shapes">
+        <div className="auth-shape shape-1"></div>
+        <div className="auth-shape shape-2"></div>
+        <div className="auth-shape shape-3"></div>
+      </div>
+
       <div className="auth-container animate-up">
         {/* Left Side: Visual */}
         <div className="auth-visual">
-          <div className="visual-content">
-            <img
-              src="/assets/Mask Group.png"
-              alt="Login Illustration"
-              className="auth-illustration-img"
-            />
-            <h2>Welcome Back!</h2>
-            <p>Ayo lanjut belajar dan kejar mimpimu bersama Skillvers.</p>
-          </div>
+          <div className="visual-bg-decoration"></div>
+          <img
+            src="/assets/login-img.png"
+            alt="Login Illustration"
+            className="auth-illustration-img"
+          />
         </div>
 
         {/* Right Side: Form */}
         <div className="auth-form-side">
           <div className="auth-header">
-            <Link to="/" className="auth-logo">
-              <img src="/assets/logo.11dc4d9c.svg fill.png" alt="Skillvers" style={{ height: '40px' }} />
-            </Link>
             <h1>Login</h1>
             <p>Silahkan masuk ke akun Anda</p>
           </div>
@@ -74,7 +75,7 @@ function LoginPage() {
                 <Mail size={20} />
                 <input
                   type="email"
-                  placeholder="name@learning.com"
+                  placeholder="Email or Username"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -88,7 +89,7 @@ function LoginPage() {
                 <Lock size={20} />
                 <input
                   type={showPassword ? "text" : "password"}
-                  placeholder="••••••••"
+                  placeholder="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -97,7 +98,7 @@ function LoginPage() {
                   className="toggle-password"
                   onClick={() => setShowPassword(!showPassword)}
                 >
-                  {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </div>
               </div>
             </div>
@@ -105,18 +106,16 @@ function LoginPage() {
             <button type="submit" className="btn-auth" disabled={isLoading}>
               {isLoading ? (
                 <>
-                  <Loader2 className="animate-spin" size={20} /> Processing...
+                  <Loader2 className="animate-spin" size={20} /> PROCESSING...
                 </>
               ) : (
-                <>
-                  Login Ke Akun <ArrowRight size={20} />
-                </>
+                "LOGIN"
               )}
             </button>
           </form>
 
           <div className="auth-footer">
-            <p>Belum punya akun? <Link to="/register">Daftar Sekarang</Link></p>
+            <p>Not a member? <Link to="/register">Signup now</Link></p>
           </div>
         </div>
       </div>
