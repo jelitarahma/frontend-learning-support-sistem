@@ -1,0 +1,229 @@
+.navbar-wrapper {
+  width: 100%;
+  z-index: 1000;
+  background: white;
+  transition: var(--transition);
+}
+
+.navbar-wrapper.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  animation: slideDown 0.4s ease;
+}
+
+.navbar-wrapper.sticky .top-promo-bar {
+  display: none;
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
+}
+
+/* Navbar Main */
+.navbar {
+  padding: 10px 0;
+  background: var(--secondary);
+  transition: var(--transition);
+}
+
+.navbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.left-side {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding-right: 2rem;
+}
+
+.logo-img {
+  height: 30px;
+}
+
+.logo-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--text-main);
+  letter-spacing: -0.5px;
+}
+
+.navbar-menu {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-link {
+  font-weight: 700;
+  color: #555555;
+  font-size: 14px;
+  transition: var(--transition);
+  position: relative;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--primary);
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary);
+  border-radius: 2px;
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+}
+
+/* Search Container */
+.search-container {
+  display: flex;
+  align-items: center;
+  background: #F1F5F9;
+  border-radius: 99px;
+  padding: 0.10rem 0.10rem 0.10rem 1.5rem;
+  width: 320px;
+  border: 1px solid transparent;
+  transition: var(--transition);
+}
+
+.search-container:focus-within {
+  background: white;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(91, 86, 232, 0.1);
+}
+
+.search-container input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 0.95rem;
+  width: 100%;
+  color: var(--dark-navy);
+  font-weight: 500;
+}
+
+.search-container input::placeholder {
+  color: #94A3B8;
+}
+
+.search-btn {
+  /* background: var(--primary); */
+  color: white;
+  border: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  flex-shrink: 0;
+  color: var(--dark-navy);
+}
+
+.search-btn:hover {
+  background: var(--secondary);
+}
+
+/* Action Icons */
+.icon-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #F8FAFC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  color: var(--dark-navy);
+  border: 1px solid #E2E8F0;
+}
+
+.icon-btn:hover {
+  background: white;
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.user-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logout-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: var(--transition);
+}
+
+.logout-btn:hover {
+  color: #EF4444;
+}
+
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--dark-navy);
+}
+
+/* Mobile Responsive */
+@media (max-width: 1200px) {
+  .navbar-menu { gap: 1.5rem; }
+  .search-container { width: 240px; }
+}
+
+@media (max-width: 992px) {
+  .search-container { display: none; }
+  .navbar-menu { display: none; }
+  
+  .navbar-menu.open {
+    display: flex;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 280px;
+    height: 100vh;
+    background: white;
+    flex-direction: column;
+    padding: 6rem 2rem;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+    z-index: 2000;
+  }
+  
+  .mobile-menu-toggle {
+    display: block;
+    z-index: 2001;
+  }
+}
+
+@media (max-width: 576px) {
+  .logo-text { display: none; }
+  .top-promo-bar { font-size: 0.8rem; }
+  .promo-btn { display: none; }
+}

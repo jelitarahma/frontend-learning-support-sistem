@@ -1,0 +1,258 @@
+.courses-page-v2 {
+  background-color: #FAFAFA;
+  min-height: 100vh;
+}
+
+/* Header Section */
+.courses-header {
+  padding: 3rem 0 20px;
+  background: white;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 40px;
+}
+
+.header-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1F1B3D;
+  margin-bottom: 0.5rem;
+}
+
+.header-subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 600px;
+}
+
+/* Main Layout */
+.courses-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 3rem;
+  align-items: flex-start;
+  padding-bottom: 80px;
+}
+
+/* Sidebar */
+.courses-sidebar {
+  position: sticky;
+  top: 120px;
+}
+
+.sidebar-section {
+  background: white;
+  border: 1.5px solid #282568;
+  border-radius: 20px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #1F1B3D;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.category-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 1rem;
+  background: transparent;
+  border: none;
+  border-radius: 12px;
+  text-align: left;
+  font-weight: 600;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.category-item .dot {
+  width: 8px;
+  height: 8px;
+  border: 1.5px solid #282568;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.category-item:hover {
+  background: #F1F5F9;
+  color: #1F1B3D;
+}
+
+.category-item.active {
+  background: #282568;
+  color: white;
+}
+
+.category-item.active .dot {
+  background: white;
+  border-color: white;
+}
+
+.sidebar-promo .promo-card {
+  background: #FFFBE6;
+  border: 1.5px solid #FFB624;
+  border-radius: 20px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.promo-card h4 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+}
+
+.promo-card p {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 4rem;
+}
+
+.promo-img {
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  width: 100px;
+}
+
+/* Results Content */
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.results-count {
+  font-size: 1.1rem;
+  color: #666;
+}
+
+.results-count strong {
+  color: #1F1B3D;
+}
+
+.results-view-toggle {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.view-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  color: #999;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.view-btn.active {
+  background: #282568;
+  color: white;
+  border-color: #282568;
+}
+
+/* Courses Grid */
+.courses-grid-v3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+/* Redundant card styles removed. Using shared classes from CourseList.css */
+
+.card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.course-card-premium:hover .card-thumb img {
+  transform: scale(1.1);
+}
+
+/* No Results */
+.no-results {
+  text-align: center;
+  padding: 100px 20px;
+  background: white;
+  border-radius: 24px;
+  border: 1.5px dashed #ccc;
+}
+
+.no-results-img {
+  width: 120px;
+  margin-bottom: 2rem;
+}
+
+.no-results h3 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.no-results p {
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.btn-reset {
+  background: #282568;
+  color: white;
+  border: none;
+  padding: 0.8rem 2.5rem;
+  border-radius: 50px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.results-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 0;
+  text-align: center;
+}
+
+.results-loading p {
+  margin-top: 1rem;
+  font-weight: 600;
+  color: #666;
+}
+
+@media (max-width: 1024px) {
+  .courses-layout {
+    grid-template-columns: 1fr;
+  }
+  .courses-sidebar {
+    position: static;
+  }
+  .header-title {
+    font-size: 2.2rem;
+  }
+}
