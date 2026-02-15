@@ -144,7 +144,7 @@ function AdminDashboard() {
                     <thead>
                       <tr>
                         <th>Material</th>
-                        <th>User ID</th>
+                        <th>User</th>
                         <th>Status</th>
                         <th>Progress</th>
                       </tr>
@@ -154,7 +154,7 @@ function AdminDashboard() {
                         dashboardData.progress.map((p, idx) => (
                           <tr key={idx}>
                             <td>{p.materialId?.title || 'Unknown Material'}</td>
-                            <td>{p.userId || 'N/A'}</td>
+                            <td>{p.userId?.fullName || 'N/A'}</td>
                             <td>
                               <span className={`status-badge ${p.status?.toLowerCase()}`}>
                                 {p.status}
@@ -185,7 +185,9 @@ function AdminDashboard() {
                         </div>
                         <div className="attempt-info">
                           <h4 style={{ margin: 0, fontSize: '0.9rem' }}>{attempt.quizId?.title || 'Quiz'}</h4>
-                          <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Score: {attempt.score}</p>
+                          <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
+                            Learner: <strong>{attempt.userId?.fullName || 'Unknown'}</strong> • Score: {attempt.score}
+                          </p>
                         </div>
                         <div className="attempt-status" style={{ marginLeft: 'auto' }}>
                           <span className={`status-badge ${attempt.status?.toLowerCase()}`}>{attempt.status}</span>
