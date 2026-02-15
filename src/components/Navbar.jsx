@@ -56,8 +56,8 @@ function Navbar() {
                 </div>
                 <Link to="/" className={`nav-link ${isActive('/') ? 'active' : ''}`}>Home</Link>
                 <Link to="/courses" className={`nav-link ${isActive('/courses') ? 'active' : ''}`}>Courses</Link>
-                {user && (
-                  <Link to={canAccessAdmin ? "/admin" : "/dashboard"} className={`nav-link ${isActive('/admin') || isActive('/dashboard') ? 'active' : ''}`}>
+                {user && canAccessAdmin && (
+                  <Link to="/admin" className={`nav-link ${isActive('/admin') ? 'active' : ''}`}>
                     Dashboard
                   </Link>
                 )}

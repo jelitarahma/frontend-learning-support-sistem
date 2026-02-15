@@ -96,7 +96,7 @@ function AdminDashboard() {
             {/* Welcome Banner */}
             <section className="welcome-banner">
               <div className="banner-content">
-                <h2>Welcome, {user?.fullName || 'Admin'}!</h2>
+                <h2>Welcome, {typeof user?.fullName === 'string' ? user.fullName : 'Admin'}!</h2>
                 <p>You are logged in as <strong>{user?.role}</strong>. Managing the system with full database access.</p>
               </div>
             </section>
@@ -144,7 +144,7 @@ function AdminDashboard() {
                     <thead>
                       <tr>
                         <th>Material</th>
-                        <th>User</th>
+                        <th>User ID</th>
                         <th>Status</th>
                         <th>Progress</th>
                       </tr>
@@ -154,7 +154,7 @@ function AdminDashboard() {
                         dashboardData.progress.map((p, idx) => (
                           <tr key={idx}>
                             <td>{p.materialId?.title || 'Unknown Material'}</td>
-                            <td>{p.userId?.fullName || 'N/A'}</td>
+                            <td>{p.userId?.fullName || p.userId?.username || (typeof p.userId === 'string' ? p.userId : 'N/A')}</td>
                             <td>
                               <span className={`status-badge ${p.status?.toLowerCase()}`}>
                                 {p.status}
@@ -186,7 +186,7 @@ function AdminDashboard() {
                         <div className="attempt-info">
                           <h4 style={{ margin: 0, fontSize: '0.9rem' }}>{attempt.quizId?.title || 'Quiz'}</h4>
                           <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
-                            Learner: <strong>{attempt.userId?.fullName || 'Unknown'}</strong> • Score: {attempt.score}
+                            {attempt.userId?.fullName || attempt.userId?.username || 'User'} | Score: {attempt.score}
                           </p>
                         </div>
                         <div className="attempt-status" style={{ marginLeft: 'auto' }}>
@@ -258,7 +258,7 @@ function AdminDashboard() {
           <div className="header-actions">
             <div className="header-user-mini" style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', marginRight: '1rem' }}>
               <img src="https://unair.ac.id/wp-content/uploads/2023/04/gambar1-19-1-1024x929.jpg" alt="Avatar" style={{ width: 35, height: 35, borderRadius: '50%', objectFit: 'cover' }} />
-              <span style={{ fontWeight: 600, fontSize: '0.9rem' }}>{user?.fullName || 'Admin'}</span>
+              <span style={{ fontWeight: 600, fontSize: '0.9rem' }}>{typeof user?.fullName === 'string' ? user.fullName : 'Admin'}</span>
             </div>
             <button className="icon-btn"><MessageSquare size={20} /></button>
             <button className="icon-btn notify"><Bell size={20} /></button>
